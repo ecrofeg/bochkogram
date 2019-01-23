@@ -111,12 +111,12 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  border-radius: 50%;
-  background-color: #464c52;
+  padding: 10px 15px;
   fill: rgba(255, 255, 255, 0.5);
-  margin-left: 10px;
   cursor: pointer;
+  position: absolute;
+  right: 15px;
+  z-index: 1;
 }
 
 .newMessage-button svg {
