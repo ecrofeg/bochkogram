@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  node:
+    build: ./server
+    restart: always
+    ports:
+      - '7000:7000'
+    links:
+      - mongo
+    environment:
+      - MONGODB_URL=mongodb://mongo:27017/telesram
+
+  web:
+    build: ./web
+    restart: always
+    ports:
+      - '80:80'
+    links:
+      - node
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
