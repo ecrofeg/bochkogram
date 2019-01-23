@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URL).then(() => console.log('MongoDB is connected'));
+mongoose.connect('mongodb://mongo:27017/bochkogram').then(() => console.log('MongoDB is connected'));
 
 const Message = mongoose.model(
 	'Message',

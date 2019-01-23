@@ -8,8 +8,6 @@ services:
       - '7000:7000'
     links:
       - mongo
-    environment:
-      - MONGODB_URL=mongodb://mongo:27017/telesram
 
   web:
     build: ./web
@@ -24,6 +22,8 @@ services:
     restart: always
     ports:
       - '27017:27017'
+    volumes:
+      - ./mongo_data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
