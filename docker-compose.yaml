@@ -14,7 +14,7 @@ services:
       MONGO_INITDB_DATABASE: bochkogram
 
   node:
-    build: ./server
+    image: pnaumov/bochka-server
     restart: always
     ports:
       - '7000:7000'
@@ -26,7 +26,7 @@ services:
       WAIT_HOSTS: mongo:27017
 
   web:
-    build: ./web
+    image: pnaumov/bochka-web
     restart: always
     ports:
       - '80:80'
