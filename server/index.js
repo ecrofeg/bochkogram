@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://mongo:27017/bochkogram').then(() => console.log('MongoDB is connected'));
+mongoose.connect('mongodb://root:example@mongo/bochkogram').then(() => console.log('MongoDB is connected'));
 
 const Message = mongoose.model(
 	'Message',
@@ -18,11 +18,18 @@ const Message = mongoose.model(
 	})
 );
 
-const loadMessages = () => Message.find({}).exec((error, res) => io.emit('load messages', res));
-
-app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
-});
+const loadMessages = () => {
+	Message.find({}).exec((error, res) => {
+		if (error) {
+			console.log('Error', error);
+			io.emit('error', error);
+		}
+		else {
+			console.log('Loading messages');
+			io.emit('load messages', res);
+		}
+	})
+};
 
 io.on('connection', socket => {
 	loadMessages();
@@ -35,7 +42,13 @@ io.on('connection', socket => {
 			date: new Date()
 		});
 
-		message.save().then(() => loadMessages());
+		message.save(error => {
+			if (error) {
+				console.log('Error', error);
+			}
+
+			loadMessages();
+		});
 	});
 });
 
