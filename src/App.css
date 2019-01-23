@@ -1,32 +1,174 @@
-.App {
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #363940;
+  font-family: "Roboto", sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.auth {
   text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+
+  min-width: 400px;
+  min-height: 300px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.auth-input {
+  margin-top: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.auth-proceed {
+  appearance: none;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  width: 100%;
+
+  background-color: #673ab7;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.2s;
+
+  margin-top: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.auth-proceed:hover {
+  color: #ffffff;
+}
+
+input,
+textarea {
+  appearance: none;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  width: 100%;
+
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: -0.025rem;
+  line-height: 1.25rem;
+
+  height: 40px;
+  padding: 10px 15px;
+  resize: none;
+
+  background-color: #474c51;
+  color: hsla(0, 0%, 100%, 0.7);
+}
+
+.newMessage {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background-color: #363940;
+  border-top: 1px solid #474c51;
+
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.newMessage-input {
+  width: 100%;
+}
+
+.newMessage-button {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #464c52;
+  fill: rgba(255, 255, 255, 0.5);
+  margin-left: 10px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.newMessage-button svg {
+  position: relative;
+  left: 2px;
+  width: 20px;
+  height: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.messages {
+  padding: 15px;
+  padding-bottom: 70px;
+  margin-bottom: 20px;
+  overflow-x: scroll;
+}
+
+.message:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+.message_smallMargin:not(:last-of-type) {
+  margin-bottom: 1px;
+}
+
+.message_smallMargin .message-text {
+  border-radius: 0 10px 10px 0;
+}
+
+.message:not(.message_smallMargin) + .message_smallMargin .message-text {
+  border-radius: 10px 10px 10px 0;
+}
+
+.message-author {
+  font-size: 0.9375rem;
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.message-date {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.message-text {
+  color: #dcddde;
+  font-size: 0.9375rem;
+  background-color: #474c51;
+  padding: 10px;
+  border-radius: 0 10px 10px 10px;
+  display: inline-block;
+}
+
+.message-text_yours {
+  background-color: #607d8b;
 }
