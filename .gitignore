@@ -27,6 +27,6 @@ yarn-error.log*
 .idea
 server/.env
 web/.env
-web/.env.production
+web/test
 web/build
 mongo_data
