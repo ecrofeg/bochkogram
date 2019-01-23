@@ -44,7 +44,7 @@ class App extends Component {
     this.onAuth = this.onAuth.bind(this);
     this.onAuthInputChange = this.onAuthInputChange.bind(this);
     this.onEnterKeyPressed = this.onEnterKeyPressed.bind(this);
-    this.sendMessage = this.sendMessage.bind(this);
+    this.onNewMessageButtonClick = this.onNewMessageButtonClick.bind(this);
   }
 
   onAuth() {
@@ -94,6 +94,7 @@ class App extends Component {
 
   componentDidMount() {
     this.load();
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   onInputChange(event) {
@@ -114,6 +115,12 @@ class App extends Component {
         inputText: ""
       });
     }
+  }
+
+  onNewMessageButtonClick() {
+    this.sendMessage();
+
+    setTimeout(() => document.getElementById("newMessageInput").focus(), 50);
   }
 
   onEnterKeyPressed(event) {
@@ -173,6 +180,7 @@ class App extends Component {
 
             <div className="newMessage">
               <textarea
+                id="newMessageInput"
                 className="newMessage-input"
                 value={this.state.inputText}
                 onChange={this.onInputChange}
@@ -184,7 +192,10 @@ class App extends Component {
                 required={true}
               />
 
-              <div className="newMessage-button" onClick={this.sendMessage}>
+              <div
+                className="newMessage-button"
+                onClick={this.onNewMessageButtonClick}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
