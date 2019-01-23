@@ -80,7 +80,7 @@ class App extends Component {
 				authorColor: userInfo.color
 			});
 
-			this.socket = io('http://node:7000/');
+			this.socket = io(process.env.NODE_SOCKET_URL ? process.env.NODE_SOCKET_URL : 'http://node:7000/');
 
 			this.socket.on('load messages', result => {
 				this.setState({
