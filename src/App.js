@@ -186,7 +186,6 @@ class App extends Component {
                 onChange={this.onInputChange}
                 onKeyPress={this.onEnterKeyPressed}
                 autoComplete="off"
-                autoCorrect="off"
                 spellCheck="false"
                 placeholder="Bochka is listening..."
                 required={true}
