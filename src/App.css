@@ -12,7 +12,7 @@ body {
 
 body {
   background-color: #363940;
-  font-family: "Roboto", sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 #root {
@@ -70,6 +70,7 @@ h1 {
 
 input,
 textarea {
+  font-family: "PT Sans", sans-serif;
   appearance: none;
   border: none;
   outline: none;
