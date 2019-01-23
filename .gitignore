@@ -28,3 +28,4 @@ yarn-error.log*
 server/.env
 web/.env
 web/build
+mongo_data

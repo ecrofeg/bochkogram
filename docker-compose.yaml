@@ -6,11 +6,11 @@ services:
     restart: always
     ports:
       - '27017:27017'
-#    volumes:
-#      - ./mongo_data:/data/db
+    volumes:
+      - ./mongo_data:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: bochkogram
 
   node:
@@ -20,6 +20,10 @@ services:
       - '7000:7000'
     links:
       - mongo
+    depends_on:
+      - mongo
+    environment:
+      WAIT_HOSTS: mongo:27017
 
   web:
     build: ./web
