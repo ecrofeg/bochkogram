@@ -16,16 +16,16 @@ const Message = mongoose.model("Message", {
   date: Date
 });
 
-const loadMessages = () => {
-  Message.find({}).exec((error, res) => io.emit("load messages", res));
+const loadMessages = socket => {
+  Message.find({}).exec((error, res) => socket.emit("load messages", res));
 };
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-io.on("connection", function(socket) {
-  loadMessages();
+io.on("connection", socket => {
+  loadMessages(socket);
 
   socket.on("add message", newMessage => {
     const message = new Message({
@@ -35,7 +35,7 @@ io.on("connection", function(socket) {
       date: new Date()
     });
 
-    message.save(() => loadMessages());
+    message.save(() => loadMessages(socket));
   });
 });
 
