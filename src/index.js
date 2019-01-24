@@ -51,6 +51,10 @@ io.on('connection', socket => {
 			loadMessages();
 		});
 	});
+
+	socket.on('i need messages', () => {
+		loadMessages();
+	});
 });
 
 http.listen(7000, function() {
