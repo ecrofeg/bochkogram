@@ -8,7 +8,7 @@ COPY ./config/mongo.js /docker-entrypoint-initdb.d/
 
 RUN yarn
 
-COPY ./src .
+COPY . .
 
 EXPOSE 7000
 
