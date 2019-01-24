@@ -2,7 +2,9 @@ require('dotenv').config();
 
 const app = require('express')();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+	pingTimeout: 60000,
+});
 
 const mongoose = require('mongoose');
 
@@ -25,7 +27,6 @@ const loadMessages = () => {
 			io.emit('error', error);
 		}
 		else {
-			console.log('Loading messages');
 			io.emit('load messages', res);
 		}
 	})
