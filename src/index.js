@@ -3,7 +3,8 @@ require('dotenv').config();
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
-	pingTimeout: 60000,
+	pingTimeout: 30000,
+	pingInterval: 30000
 });
 
 const mongoose = require('mongoose');
